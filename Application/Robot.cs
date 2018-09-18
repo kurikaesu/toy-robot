@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace toy_robot
 {
-    public sealed class Robot
+    public sealed class Robot : IRobot
     {
         private static readonly List<string> availableDirections = new List<string> {
             "north",

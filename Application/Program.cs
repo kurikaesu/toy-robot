@@ -1,9 +1,44 @@
 ﻿using System;
+using toy_robot;
 
 namespace toy_robot
 {
     public class Program
     {
+        public static void HandleCommand(Table t, IRobot r, string line)
+        {
+            var parts = line.Split(" ");
+            if (parts.Length == 1) {
+                switch (parts[0].ToLower()) {
+                    case "move":
+                        r.Move();
+                        break;
+                    case "left":
+                        r.Left();
+                        break;
+                    case "right":
+                        r.Right();
+                        break;
+                    case "report":
+                        r.Report();
+                        break;
+                    default:
+                        // Don't know this command
+                        break;
+                }
+            } else if (parts.Length == 2 && parts[0].ToLower() == "place") {
+                var pArgs = parts[1].Split(",");
+                try {
+                    var x = Convert.ToUInt16(pArgs[0]);
+                    var y = Convert.ToUInt16(pArgs[1]);
+                    var direction = pArgs[2];
+                    r.Place(t, x, y, direction);
+                } catch (Exception) {
+                    // We silently fail here which feels bad
+                }
+            }
+        }
+
         public static void Main(string[] args)
         {
             if (args.Length == 0) {
@@ -19,36 +54,7 @@ namespace toy_robot
             using (var file = new System.IO.StreamReader(filename)) {
                 string line = null;
                 while ((line = file.ReadLine()) != null) {
-                    var parts = line.Split(" ");
-                    if (parts.Length == 1) {
-                        switch (parts[0].ToLower()) {
-                            case "move":
-                                r.Move();
-                                break;
-                            case "left":
-                                r.Left();
-                                break;
-                            case "right":
-                                r.Right();
-                                break;
-                            case "report":
-                                r.Report();
-                                break;
-                            default:
-                                // Don't know this command
-                                break;
-                        }
-                    } else if (parts.Length == 2 && parts[0].ToLower() == "place") {
-                        var pArgs = parts[1].Split(",");
-                        try {
-                            var x = Convert.ToUInt16(pArgs[0]);
-                            var y = Convert.ToUInt16(pArgs[1]);
-                            var direction = pArgs[2];
-                            r.Place(t, x, y, direction);
-                        } catch (Exception) {
-                            // We silently fail here which feels bad
-                        }
-                    }
+                    HandleCommand(t, r, line);
                 }
             }
         }
