@@ -130,7 +130,7 @@ namespace toy_robot
 
         public string Direction()
         {
-            return currentDirection;
+            return currentDirection?.ToUpper();
         }
     }
 }
