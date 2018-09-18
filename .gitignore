@@ -2,5 +2,8 @@
 bin/
 obj/
 
+# VSCode related
+.vscode/
+
 # VSCode localhistory plugin
 .history/
