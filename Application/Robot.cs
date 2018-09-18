@@ -20,8 +20,8 @@ namespace toy_robot
         };
         // Initialise position as null to ensure we have
         // an indicator for when the robot hasn't been placed
-        private Nullable<ushort> x = null;
-        private Nullable<ushort> y = null;
+        private ushort? x = null;
+        private ushort? y = null;
 
         private string currentDirection;
         private short vx = 0;
@@ -113,6 +113,16 @@ namespace toy_robot
                     string.Format("{0},{1},{2}", x, y, currentDirection.ToUpper())
                 );
             }
+        }
+
+        public Tuple<ushort?, ushort?> Position()
+        {
+            return new Tuple<ushort?, ushort?>(x, y);
+        }
+
+        public string Direction()
+        {
+            return currentDirection;
         }
     }
 }
