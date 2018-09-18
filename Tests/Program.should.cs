@@ -54,5 +54,25 @@ namespace Tests
 
             Assert.Equal("PLACE 1,3,NORTH", r.LastCommand());
         }
+
+        [Fact]
+        public void ProgramShould_IgnoreBogusCommands()
+        {
+            var t = new Table();
+            var r = new FauxRobot();
+            Program.HandleCommand(t, r, "JUMP");
+
+            Assert.Equal("", r.LastCommand());
+        }
+
+        [Fact]
+        public void ProgramShould_IgnoreInvalidCommands()
+        {
+            var t = new Table();
+            var r = new FauxRobot();
+            Program.HandleCommand(t, r, "PLACE 1");
+
+            Assert.Equal("", r.LastCommand());
+        }
     }
 }
