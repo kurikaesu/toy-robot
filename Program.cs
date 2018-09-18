@@ -8,7 +8,7 @@ namespace toy_robot
         {
             var t = new Table();
             var r = new Robot();
-            r.Place(t, 1, 1);
+            r.Place(t, 1, 0, "north");
             r.Move(t);
             r.Report();
         }
