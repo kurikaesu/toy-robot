@@ -27,9 +27,17 @@ namespace toy_robot
         private short vx = 0;
         private short vy = 0;
 
+        // The table itself
+        private Table _table;
+
         // Places this robot on the provided table on the specified location and facing direction
         public void Place(Table table, ushort px, ushort py, string direction)
         {
+            if (table == null)
+                return;
+
+            _table = table;
+
             var loweredDirection = direction.Trim().ToLower();
 
             // We're using unsigned values so we only have to check two sides
@@ -62,14 +70,14 @@ namespace toy_robot
                 }
         }
 
-        public void Move(Table table)
+        public void Move()
         {
-            if (x != null && y != null) {
+            if (_table != null && x != null && y != null) {
                 // We take advantage of unsigned characteristics
                 var dx = (ushort)(x + vx);
                 var dy = (ushort)(y + vy);
-                if (dx < table.width &&
-                    dy < table.height) {
+                if (dx < _table.width &&
+                    dy < _table.height) {
                     x = dx;
                     y = dy;
                 }

@@ -9,7 +9,8 @@ namespace toy_robot
         {
             var t = new Table();
             var r = new Robot();
-            r.Move(t);
+            
+            r.Move();
 
             var pos = r.Position();
             Assert.Null(pos.Item1);
@@ -42,6 +43,18 @@ namespace toy_robot
             Assert.Null(pos.Item1);
             Assert.Null(pos.Item2);
             Assert.Null(r.Direction());
+        }
+
+        [Fact]
+        public void RobotShould_IgnoreEmptyTable()
+        {
+
+        }
+
+        [Fact]
+        public void RobotShould_BeHappilyPlacedOnTable()
+        {
+
         }
     }
 }

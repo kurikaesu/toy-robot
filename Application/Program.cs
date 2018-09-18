@@ -23,7 +23,7 @@ namespace toy_robot
                     if (parts.Length == 1) {
                         switch (parts[0].ToLower()) {
                             case "move":
-                                r.Move(t);
+                                r.Move();
                                 break;
                             case "left":
                                 r.Left();
