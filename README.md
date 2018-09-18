@@ -14,7 +14,7 @@ Then:
 > dotnet run <Input File>
 ```
 
-Test data is provided in the toy-robot/TestData folder and can be used by example:
+Test data is provided in the toy-robot/Application/TestData folder and can be used by example:
 ```
 > dotnet run TestData/Test1
 ```
@@ -25,3 +25,5 @@ Unit tests are also provided and can be invoked by:
 > dotnet restore
 > dotnet test
 ```
+
+The code in this repository is licensed under the MIT license. See LICENSE file for details.
