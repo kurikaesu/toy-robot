@@ -7,6 +7,7 @@ namespace toy_robot
     {
         public static void HandleCommand(Table t, IRobot r, string line)
         {
+            // Check to see if we have a PLACE or other command
             var parts = line.Split(" ");
             if (parts.Length == 1) {
                 switch (parts[0].ToLower()) {
@@ -23,7 +24,7 @@ namespace toy_robot
                         r.Report();
                         break;
                     default:
-                        // Don't know this command
+                        // Don't know this command, just ignore it
                         break;
                 }
             } else if (parts.Length == 2 && parts[0].ToLower() == "place") {
@@ -51,6 +52,7 @@ namespace toy_robot
             var t = new Table();
             var r = new Robot();
 
+            // Read the supplied file and parse it line by line
             using (var file = new System.IO.StreamReader(filename)) {
                 string line = null;
                 while ((line = file.ReadLine()) != null) {
