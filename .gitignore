@@ -1,0 +1,6 @@
+# Compiler outputs
+bin/
+obj/
+
+# VSCode localhistory plugin
+.history/
