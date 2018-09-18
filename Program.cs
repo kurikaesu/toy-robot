@@ -45,11 +45,8 @@ namespace toy_robot
                             var y = Convert.ToUInt16(pArgs[1]);
                             var direction = pArgs[2];
                             r.Place(t, x, y, direction);
-                        } catch (Exception e) {
-                            Console.WriteLine(
-                                string.Format("Encountered input error: {0}", e.Message)
-                            );
-                            break;
+                        } catch (Exception) {
+                            // We silently fail here which feels bad
                         }
                     }
                 }
